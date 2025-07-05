@@ -90,8 +90,6 @@ const MenuDescription = styled.p`
   line-height: 1.5;
 `;
 
-const animalEmojis = ['🐦', '🐠', '🐞', '🐢', '🦋', '🐸', '🐰', '🦊'];
-
 const AnimatedBg = styled.div`
   position: fixed;
   top: 0;
@@ -103,47 +101,61 @@ const AnimatedBg = styled.div`
   overflow: hidden;
 `;
 
-const AnimalEmoji = styled.div`
+const Bubble = styled.div`
   position: absolute;
-  font-size: 2.5rem;
-  opacity: 0.7;
-  animation: floatAnimal 8s ease-in-out infinite;
-  user-select: none;
-  filter: drop-shadow(0 2px 8px #74c0fc88);
+  border-radius: 50%;
+  opacity: 0.38;
+  animation: floatBubble 8s ease-in-out infinite;
+  box-shadow: 0 4px 32px 0 rgba(52, 152, 219, 0.18), 0 1.5px 8px 0 rgba(0,0,0,0.08);
+  background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.85) 0%, rgba(165,216,255,0.55) 60%, rgba(116,192,252,0.35) 100%);
+  overflow: visible;
 
-  @keyframes floatAnimal {
+  &::after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 18%;
+    left: 22%;
+    width: 32%;
+    height: 22%;
+    background: radial-gradient(circle, rgba(255,255,255,0.7) 0%, rgba(255,255,255,0.0) 100%);
+    border-radius: 50%;
+    filter: blur(1.5px);
+    pointer-events: none;
+  }
+
+  @keyframes floatBubble {
     0% { transform: translateY(0) scale(1); }
-    50% { transform: translateY(-30px) scale(1.1); }
+    50% { transform: translateY(-40px) scale(1.08); }
     100% { transform: translateY(0) scale(1); }
   }
 `;
 
 const Home = () => {
-  // Generate random animal emojis
-  const animals = Array.from({ length: 8 }).map((_, i) => {
-    const emoji = animalEmojis[Math.floor(Math.random() * animalEmojis.length)];
-    const size = Math.random() * 24 + 28; // 28-52px
+  // Bubble color palette (all use same gradient now)
+  // Generate random bubbles
+  const bubbles = Array.from({ length: 10 }).map((_, i) => {
+    const size = Math.random() * 60 + 60; // 60-120px
     const top = Math.random() * 80 + 5; // 5-85%
     const left = Math.random() * 90 + 2; // 2-92%
     const delay = Math.random() * 6; // 0-6s
     return (
-      <AnimalEmoji
+      <Bubble
         key={i}
         style={{
-          fontSize: `${size}px`,
+          width: size,
+          height: size,
           top: `${top}%`,
           left: `${left}%`,
           animationDelay: `${delay}s`,
         }}
-      >
-        {emoji}
-      </AnimalEmoji>
+      />
     );
   });
 
   return (
     <HomeContainer>
-      <AnimatedBg>{animals}</AnimatedBg>
+      <AnimatedBg>{bubbles}</AnimatedBg>
       <Hero>
         <HeroTitle>🎨 Belajar Huruf Hijaiyah</HeroTitle>
         <HeroSubtitle>
