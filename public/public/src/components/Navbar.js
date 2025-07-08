@@ -3,7 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 
 const Nav = styled.nav`
-  background: linear-gradient(135deg, #ff6b6b, #4ecdc4);
+  background: #ff922b;
   padding: 15px 0;
   box-shadow: 0 4px 20px rgba(0,0,0,0.1);
   position: sticky;
