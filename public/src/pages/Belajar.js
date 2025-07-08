@@ -25,7 +25,8 @@ const Subtitle = styled.p`
 
 const HurufGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(7, auto);
   gap: 20px;
   margin-bottom: 40px;
 `;
