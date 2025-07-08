@@ -99,8 +99,8 @@ const TipsItem = styled.li`
 `;
 
 const ContactInfo = styled.div`
-  background: linear-gradient(135deg, #667eea, #764ba2);
-  color: white;
+  background: #ffe066;
+  color: #2d3436;
   padding: 30px;
   border-radius: 20px;
   text-align: center;
@@ -234,13 +234,13 @@ const Tentang = () => {
         <ContactInfo>
           <ContactTitle>📞 Informasi Kontak</ContactTitle>
           <ContactText>
-            Aplikasi ini dikembangkan sebagai tugas akhir untuk pembelajaran huruf hijaiyah.
+            telp : 085951337102
           </ContactText>
           <ContactText>
-            Dikembangkan dengan React.js dan styled-components untuk pengalaman yang optimal.
+            email : ferbiantifenti@gmail.com
           </ContactText>
           <ContactText>
-            Semoga aplikasi ini bermanfaat untuk pembelajaran anak-anak usia dini.
+            Hubungi kontak diatas jika ada kendala! Terimakasih^^
           </ContactText>
         </ContactInfo>
       </TentangContainer>

@@ -162,9 +162,7 @@ const Quiz = () => {
     const newQuestions = shuffledData.slice(0, 15).map((huruf, index) => {
       const questionTypes = ['huruf', 'nama', 'contoh'];
       const randomType = questionTypes[Math.floor(Math.random() * questionTypes.length)];
-      
       let questionText, correctAnswer, options;
-      
       switch(randomType) {
         case 'huruf':
           questionText = `Apa nama huruf ini?`;
@@ -182,7 +180,6 @@ const Quiz = () => {
           questionText = `Apa nama huruf ini?`;
           correctAnswer = huruf.nama;
       }
-      
       // Generate wrong answers
       const wrongAnswers = shuffledData
         .filter(h => h.id !== huruf.id)
@@ -196,9 +193,7 @@ const Quiz = () => {
             default: return h.nama;
           }
         });
-      
       options = [correctAnswer, ...wrongAnswers].sort(() => Math.random() - 0.5);
-      
       return {
         id: index,
         huruf: huruf,
@@ -208,7 +203,6 @@ const Quiz = () => {
         type: randomType
       };
     });
-    
     setQuestions(newQuestions);
   };
 
@@ -294,7 +288,10 @@ const Quiz = () => {
             Pertanyaan {currentQuestion + 1} dari {questions.length}
           </div>
 
-          <QuestionDisplay>{currentQ.huruf.huruf}</QuestionDisplay>
+          {/* Tampilkan huruf hijaiyah di atas hanya jika tipe soal 'huruf' */}
+          {currentQ.type === 'huruf' && (
+            <QuestionDisplay>{currentQ.huruf.huruf}</QuestionDisplay>
+          )}
           <QuestionText>{currentQ.question}</QuestionText>
 
           <OptionsGrid>
