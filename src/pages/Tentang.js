@@ -101,8 +101,8 @@ const TipsItem = styled.li`
 const ContactInfo = styled.div`
   background: #ffe066;
   color: #2d3436;
-  padding: 16px 20px;
-  border-radius: 12px;
+  padding: 30px;
+  border-radius: 20px;
   text-align: center;
   margin-top: 30px;
 `;

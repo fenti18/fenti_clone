@@ -181,7 +181,7 @@ const Belajar = () => {
       <BackButton />
       <BelajarContainer>
         <Header>
-          <Title>📚 Belajar Huruf Hijaiyah</Title>
+          <Title>📚 Ayo belajar huruf hijaiyah!</Title>
           <Subtitle>Klik huruf untuk mempelajari lebih lanjut</Subtitle>
         </Header>
 
