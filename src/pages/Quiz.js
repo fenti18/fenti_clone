@@ -64,28 +64,20 @@ const OptionsGrid = styled.div`
 `;
 
 const OptionButton = styled.button`
-  background: ${props => {
-    if (props.correct && props.showResult) return '#4CAF50';
-    if (props.incorrect && props.showResult) return '#f44336';
-    return 'linear-gradient(135deg, #667eea, #764ba2)';
-  }};
+  background: #74b9ff;
   color: white;
   border: none;
-  border-radius: 20px;
-  padding: 20px;
-  font-size: 1.2rem;
+  border-radius: 25px;
+  padding: 15px 30px;
+  font-size: 1.1rem;
   font-weight: bold;
   cursor: pointer;
+  margin: 10px;
   transition: all 0.3s ease;
-  
   &:hover {
-    transform: ${props => props.showResult ? 'none' : 'translateY(-3px)'};
-    box-shadow: ${props => props.showResult ? 'none' : '0 8px 25px rgba(102, 126, 234, 0.4)'};
-  }
-  
-  &:disabled {
-    cursor: not-allowed;
-    opacity: 0.8;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+    background: #4fc3f7;
   }
 `;
 
@@ -122,38 +114,38 @@ const ResultMessage = styled.div`
 `;
 
 const NextButton = styled.button`
-  background: linear-gradient(135deg, #ff6b6b, #ee5a52);
+  background: #74b9ff;
   color: white;
   border: none;
   border-radius: 25px;
   padding: 15px 30px;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   font-weight: bold;
   cursor: pointer;
-  margin: 20px;
+  margin: 10px;
   transition: all 0.3s ease;
-  
   &:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(255, 107, 107, 0.4);
+    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+    background: #4fc3f7;
   }
 `;
 
 const RestartButton = styled.button`
-  background: linear-gradient(135deg, #667eea, #764ba2);
+  background: #74b9ff;
   color: white;
   border: none;
   border-radius: 25px;
   padding: 15px 30px;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   font-weight: bold;
   cursor: pointer;
-  margin: 20px;
+  margin: 10px;
   transition: all 0.3s ease;
-  
   &:hover {
     transform: translateY(-2px);
     box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+    background: #4fc3f7;
   }
 `;
 

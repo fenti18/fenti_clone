@@ -139,7 +139,7 @@ const InfoLabel = styled.span`
 `;
 
 const PlayButton = styled.button`
-  background: linear-gradient(135deg, #667eea, #764ba2);
+  background: #74b9ff;
   color: white;
   border: none;
   border-radius: 25px;
@@ -149,10 +149,10 @@ const PlayButton = styled.button`
   cursor: pointer;
   margin: 10px;
   transition: all 0.3s ease;
-  
   &:hover {
     transform: translateY(-2px);
     box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+    background: #4fc3f7;
   }
 `;
 

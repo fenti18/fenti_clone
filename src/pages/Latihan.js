@@ -57,28 +57,20 @@ const OptionsGrid = styled.div`
 `;
 
 const OptionButton = styled.button`
-  background: ${props => {
-    if (props.correct && props.showResult) return '#4CAF50';
-    if (props.incorrect && props.showResult) return '#f44336';
-    return 'linear-gradient(135deg, #667eea, #764ba2)';
-  }};
+  background: #74b9ff;
   color: white;
   border: none;
-  border-radius: 20px;
-  padding: 20px;
-  font-size: 1.2rem;
+  border-radius: 25px;
+  padding: 15px 30px;
+  font-size: 1.1rem;
   font-weight: bold;
   cursor: pointer;
+  margin: 10px;
   transition: all 0.3s ease;
-  
   &:hover {
-    transform: ${props => props.showResult ? 'none' : 'translateY(-3px)'};
-    box-shadow: ${props => props.showResult ? 'none' : '0 8px 25px rgba(102, 126, 234, 0.4)'};
-  }
-  
-  &:disabled {
-    cursor: not-allowed;
-    opacity: 0.8;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+    background: #4fc3f7;
   }
 `;
 
@@ -115,38 +107,38 @@ const ResultMessage = styled.div`
 `;
 
 const NextButton = styled.button`
-  background: linear-gradient(135deg, #ff6b6b, #ee5a52);
+  background: #74b9ff;
   color: white;
   border: none;
   border-radius: 25px;
   padding: 15px 30px;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   font-weight: bold;
   cursor: pointer;
-  margin: 20px;
+  margin: 10px;
   transition: all 0.3s ease;
-  
   &:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(255, 107, 107, 0.4);
+    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+    background: #4fc3f7;
   }
 `;
 
 const RestartButton = styled.button`
-  background: linear-gradient(135deg, #667eea, #764ba2);
+  background: #74b9ff;
   color: white;
   border: none;
   border-radius: 25px;
   padding: 15px 30px;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   font-weight: bold;
   cursor: pointer;
-  margin: 20px;
+  margin: 10px;
   transition: all 0.3s ease;
-  
   &:hover {
     transform: translateY(-2px);
     box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+    background: #4fc3f7;
   }
 `;
 
@@ -162,18 +154,15 @@ const Latihan = () => {
     const shuffledData = [...hijaiyahData].sort(() => Math.random() - 0.5);
     const newQuestions = shuffledData.slice(0, 10).map((huruf, index) => {
       const isHurufQuestion = Math.random() > 0.5;
-      const correctAnswer = isHurufQuestion ? huruf.huruf : huruf.nama;
+      const correctAnswer = isHurufQuestion ? huruf.nama : huruf.huruf;
       const questionText = isHurufQuestion ? `Apa nama huruf ini?` : `Huruf apa yang bernama "${huruf.nama}"?`;
-      
       // Generate wrong answers
       const wrongAnswers = shuffledData
         .filter(h => h.id !== huruf.id)
         .sort(() => Math.random() - 0.5)
         .slice(0, 3)
         .map(h => isHurufQuestion ? h.nama : h.huruf);
-      
       const options = [correctAnswer, ...wrongAnswers].sort(() => Math.random() - 0.5);
-      
       return {
         id: index,
         huruf: huruf,
@@ -183,7 +172,6 @@ const Latihan = () => {
         type: isHurufQuestion ? 'huruf' : 'nama'
       };
     });
-    
     setQuestions(newQuestions);
   };
 
@@ -249,12 +237,10 @@ const Latihan = () => {
             Pertanyaan {currentQuestion + 1} dari {questions.length}
           </div>
 
-          {currentQ.type === 'huruf' ? (
-            <QuestionDisplay>{currentQ.huruf.huruf}</QuestionDisplay>
-          ) : (
+          {/* Tampilkan huruf hijaiyah di atas hanya jika tipe soal 'huruf' */}
+          {currentQ.type === 'huruf' && (
             <QuestionDisplay>{currentQ.huruf.huruf}</QuestionDisplay>
           )}
-          
           <QuestionText>{currentQ.question}</QuestionText>
 
           <OptionsGrid>
