@@ -22,7 +22,7 @@ const Button = styled.button`
 const BackButton = () => {
   const navigate = useNavigate();
   return (
-    <Button onClick={() => navigate(-1)}>
+    <Button onClick={() => navigate('/')}> 
       ⬅️ Kembali
     </Button>
   );

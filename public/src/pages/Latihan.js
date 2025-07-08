@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { hijaiyahData } from '../data/hijaiyahData';
+import BackButton from '../components/BackButton';
 
 const LatihanContainer = styled.div`
   padding: 20px;
@@ -56,28 +57,20 @@ const OptionsGrid = styled.div`
 `;
 
 const OptionButton = styled.button`
-  background: ${props => {
-    if (props.correct && props.showResult) return '#4CAF50';
-    if (props.incorrect && props.showResult) return '#f44336';
-    return 'linear-gradient(135deg, #667eea, #764ba2)';
-  }};
+  background: #74b9ff;
   color: white;
   border: none;
-  border-radius: 20px;
-  padding: 20px;
-  font-size: 1.2rem;
+  border-radius: 25px;
+  padding: 15px 30px;
+  font-size: 1.1rem;
   font-weight: bold;
   cursor: pointer;
+  margin: 10px;
   transition: all 0.3s ease;
-  
   &:hover {
-    transform: ${props => props.showResult ? 'none' : 'translateY(-3px)'};
-    box-shadow: ${props => props.showResult ? 'none' : '0 8px 25px rgba(102, 126, 234, 0.4)'};
-  }
-  
-  &:disabled {
-    cursor: not-allowed;
-    opacity: 0.8;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+    background: #4fc3f7;
   }
 `;
 
@@ -114,38 +107,38 @@ const ResultMessage = styled.div`
 `;
 
 const NextButton = styled.button`
-  background: linear-gradient(135deg, #ff6b6b, #ee5a52);
+  background: #74b9ff;
   color: white;
   border: none;
   border-radius: 25px;
   padding: 15px 30px;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   font-weight: bold;
   cursor: pointer;
-  margin: 20px;
+  margin: 10px;
   transition: all 0.3s ease;
-  
   &:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(255, 107, 107, 0.4);
+    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+    background: #4fc3f7;
   }
 `;
 
 const RestartButton = styled.button`
-  background: linear-gradient(135deg, #667eea, #764ba2);
+  background: #74b9ff;
   color: white;
   border: none;
   border-radius: 25px;
   padding: 15px 30px;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   font-weight: bold;
   cursor: pointer;
-  margin: 20px;
+  margin: 10px;
   transition: all 0.3s ease;
-  
   &:hover {
     transform: translateY(-2px);
     box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+    background: #4fc3f7;
   }
 `;
 
@@ -227,78 +220,81 @@ const Latihan = () => {
   const progress = ((currentQuestion + 1) / questions.length) * 100;
 
   return (
-    <LatihanContainer>
-      <Header>
-        <Title>✏️ Latihan Interaktif</Title>
-        <Subtitle>Uji kemampuanmu dalam mengenali huruf hijaiyah!</Subtitle>
-      </Header>
+    <>
+      <BackButton />
+      <LatihanContainer>
+        <Header>
+          <Title>✏️ Latihan Interaktif</Title>
+          <Subtitle>Uji kemampuanmu dalam mengenali huruf hijaiyah!</Subtitle>
+        </Header>
 
-      <GameCard>
-        <ScoreDisplay>
-          Skor: {score} / {questions.length}
-        </ScoreDisplay>
-        
-        <ProgressBar>
-          <ProgressFill progress={progress} />
-        </ProgressBar>
-        
-        <div>
-          Pertanyaan {currentQuestion + 1} dari {questions.length}
-        </div>
-
-        {currentQ.type === 'huruf' ? (
-          <QuestionDisplay>{currentQ.huruf.huruf}</QuestionDisplay>
-        ) : (
-          <QuestionDisplay>{currentQ.huruf.huruf}</QuestionDisplay>
-        )}
-        
-        <QuestionText>{currentQ.question}</QuestionText>
-
-        <OptionsGrid>
-          {currentQ.options.map((option, index) => (
-            <OptionButton
-              key={index}
-              onClick={() => handleAnswerClick(option)}
-              disabled={showResult}
-              correct={option === currentQ.correctAnswer}
-              incorrect={option === selectedAnswer && option !== currentQ.correctAnswer}
-              showResult={showResult}
-            >
-              {option}
-            </OptionButton>
-          ))}
-        </OptionsGrid>
-
-        {showResult && (
-          <ResultMessage correct={selectedAnswer === currentQ.correctAnswer}>
-            {selectedAnswer === currentQ.correctAnswer 
-              ? '🎉 Benar! Jawaban kamu tepat!' 
-              : `❌ Salah! Jawaban yang benar adalah: ${currentQ.correctAnswer}`
-            }
-          </ResultMessage>
-        )}
-
-        {showResult && currentQuestion < questions.length - 1 && (
-          <NextButton onClick={handleNextQuestion}>
-            Pertanyaan Berikutnya →
-          </NextButton>
-        )}
-
-        {showResult && currentQuestion === questions.length - 1 && (
+        <GameCard>
+          <ScoreDisplay>
+            Skor: {score} / {questions.length}
+          </ScoreDisplay>
+          
+          <ProgressBar>
+            <ProgressFill progress={progress} />
+          </ProgressBar>
+          
           <div>
-            <ResultMessage correct={score > questions.length / 2}>
-              {score > questions.length / 2 
-                ? `🎉 Selamat! Kamu mendapatkan ${score} dari ${questions.length} poin!` 
-                : `💪 Kamu mendapatkan ${score} dari ${questions.length} poin. Ayo coba lagi!`
+            Pertanyaan {currentQuestion + 1} dari {questions.length}
+          </div>
+
+          {currentQ.type === 'huruf' ? (
+            <QuestionDisplay>{currentQ.huruf.huruf}</QuestionDisplay>
+          ) : (
+            <QuestionDisplay>{currentQ.huruf.huruf}</QuestionDisplay>
+          )}
+          
+          <QuestionText>{currentQ.question}</QuestionText>
+
+          <OptionsGrid>
+            {currentQ.options.map((option, index) => (
+              <OptionButton
+                key={index}
+                onClick={() => handleAnswerClick(option)}
+                disabled={showResult}
+                correct={option === currentQ.correctAnswer}
+                incorrect={option === selectedAnswer && option !== currentQ.correctAnswer}
+                showResult={showResult}
+              >
+                {option}
+              </OptionButton>
+            ))}
+          </OptionsGrid>
+
+          {showResult && (
+            <ResultMessage correct={selectedAnswer === currentQ.correctAnswer}>
+              {selectedAnswer === currentQ.correctAnswer 
+                ? '🎉 Benar! Jawaban kamu tepat!' 
+                : `❌ Salah! Jawaban yang benar adalah: ${currentQ.correctAnswer}`
               }
             </ResultMessage>
-            <RestartButton onClick={handleRestart}>
-              Mulai Lagi
-            </RestartButton>
-          </div>
-        )}
-      </GameCard>
-    </LatihanContainer>
+          )}
+
+          {showResult && currentQuestion < questions.length - 1 && (
+            <NextButton onClick={handleNextQuestion}>
+              Pertanyaan Berikutnya →
+            </NextButton>
+          )}
+
+          {showResult && currentQuestion === questions.length - 1 && (
+            <div>
+              <ResultMessage correct={score > questions.length / 2}>
+                {score > questions.length / 2 
+                  ? `🎉 Selamat! Kamu mendapatkan ${score} dari ${questions.length} poin!` 
+                  : `💪 Kamu mendapatkan ${score} dari ${questions.length} poin. Ayo coba lagi!`
+                }
+              </ResultMessage>
+              <RestartButton onClick={handleRestart}>
+                Mulai Lagi
+              </RestartButton>
+            </div>
+          )}
+        </GameCard>
+      </LatihanContainer>
+    </>
   );
 };
 
