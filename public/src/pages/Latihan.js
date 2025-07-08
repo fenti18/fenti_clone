@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { hijaiyahData } from '../data/hijaiyahData';
+import BackButton from '../components/BackButton';
 
 const LatihanContainer = styled.div`
   padding: 20px;
@@ -227,78 +228,81 @@ const Latihan = () => {
   const progress = ((currentQuestion + 1) / questions.length) * 100;
 
   return (
-    <LatihanContainer>
-      <Header>
-        <Title>✏️ Latihan Interaktif</Title>
-        <Subtitle>Uji kemampuanmu dalam mengenali huruf hijaiyah!</Subtitle>
-      </Header>
+    <>
+      <BackButton />
+      <LatihanContainer>
+        <Header>
+          <Title>✏️ Latihan Interaktif</Title>
+          <Subtitle>Uji kemampuanmu dalam mengenali huruf hijaiyah!</Subtitle>
+        </Header>
 
-      <GameCard>
-        <ScoreDisplay>
-          Skor: {score} / {questions.length}
-        </ScoreDisplay>
-        
-        <ProgressBar>
-          <ProgressFill progress={progress} />
-        </ProgressBar>
-        
-        <div>
-          Pertanyaan {currentQuestion + 1} dari {questions.length}
-        </div>
-
-        {currentQ.type === 'huruf' ? (
-          <QuestionDisplay>{currentQ.huruf.huruf}</QuestionDisplay>
-        ) : (
-          <QuestionDisplay>{currentQ.huruf.huruf}</QuestionDisplay>
-        )}
-        
-        <QuestionText>{currentQ.question}</QuestionText>
-
-        <OptionsGrid>
-          {currentQ.options.map((option, index) => (
-            <OptionButton
-              key={index}
-              onClick={() => handleAnswerClick(option)}
-              disabled={showResult}
-              correct={option === currentQ.correctAnswer}
-              incorrect={option === selectedAnswer && option !== currentQ.correctAnswer}
-              showResult={showResult}
-            >
-              {option}
-            </OptionButton>
-          ))}
-        </OptionsGrid>
-
-        {showResult && (
-          <ResultMessage correct={selectedAnswer === currentQ.correctAnswer}>
-            {selectedAnswer === currentQ.correctAnswer 
-              ? '🎉 Benar! Jawaban kamu tepat!' 
-              : `❌ Salah! Jawaban yang benar adalah: ${currentQ.correctAnswer}`
-            }
-          </ResultMessage>
-        )}
-
-        {showResult && currentQuestion < questions.length - 1 && (
-          <NextButton onClick={handleNextQuestion}>
-            Pertanyaan Berikutnya →
-          </NextButton>
-        )}
-
-        {showResult && currentQuestion === questions.length - 1 && (
+        <GameCard>
+          <ScoreDisplay>
+            Skor: {score} / {questions.length}
+          </ScoreDisplay>
+          
+          <ProgressBar>
+            <ProgressFill progress={progress} />
+          </ProgressBar>
+          
           <div>
-            <ResultMessage correct={score > questions.length / 2}>
-              {score > questions.length / 2 
-                ? `🎉 Selamat! Kamu mendapatkan ${score} dari ${questions.length} poin!` 
-                : `💪 Kamu mendapatkan ${score} dari ${questions.length} poin. Ayo coba lagi!`
+            Pertanyaan {currentQuestion + 1} dari {questions.length}
+          </div>
+
+          {currentQ.type === 'huruf' ? (
+            <QuestionDisplay>{currentQ.huruf.huruf}</QuestionDisplay>
+          ) : (
+            <QuestionDisplay>{currentQ.huruf.huruf}</QuestionDisplay>
+          )}
+          
+          <QuestionText>{currentQ.question}</QuestionText>
+
+          <OptionsGrid>
+            {currentQ.options.map((option, index) => (
+              <OptionButton
+                key={index}
+                onClick={() => handleAnswerClick(option)}
+                disabled={showResult}
+                correct={option === currentQ.correctAnswer}
+                incorrect={option === selectedAnswer && option !== currentQ.correctAnswer}
+                showResult={showResult}
+              >
+                {option}
+              </OptionButton>
+            ))}
+          </OptionsGrid>
+
+          {showResult && (
+            <ResultMessage correct={selectedAnswer === currentQ.correctAnswer}>
+              {selectedAnswer === currentQ.correctAnswer 
+                ? '🎉 Benar! Jawaban kamu tepat!' 
+                : `❌ Salah! Jawaban yang benar adalah: ${currentQ.correctAnswer}`
               }
             </ResultMessage>
-            <RestartButton onClick={handleRestart}>
-              Mulai Lagi
-            </RestartButton>
-          </div>
-        )}
-      </GameCard>
-    </LatihanContainer>
+          )}
+
+          {showResult && currentQuestion < questions.length - 1 && (
+            <NextButton onClick={handleNextQuestion}>
+              Pertanyaan Berikutnya →
+            </NextButton>
+          )}
+
+          {showResult && currentQuestion === questions.length - 1 && (
+            <div>
+              <ResultMessage correct={score > questions.length / 2}>
+                {score > questions.length / 2 
+                  ? `🎉 Selamat! Kamu mendapatkan ${score} dari ${questions.length} poin!` 
+                  : `💪 Kamu mendapatkan ${score} dari ${questions.length} poin. Ayo coba lagi!`
+                }
+              </ResultMessage>
+              <RestartButton onClick={handleRestart}>
+                Mulai Lagi
+              </RestartButton>
+            </div>
+          )}
+        </GameCard>
+      </LatihanContainer>
+    </>
   );
 };
 
