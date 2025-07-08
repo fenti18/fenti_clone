@@ -8,7 +8,7 @@ const HomeContainer = styled.div`
 `;
 
 const Hero = styled.div`
-  background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #fecfef 100%);
+  background: #ffe066;
   border-radius: 30px;
   padding: 60px 40px;
   margin-bottom: 40px;
