@@ -12,6 +12,14 @@ const MainScreen = styled.div`
   box-shadow: 0 20px 40px rgba(0,0,0,0.1);
   position: relative;
   z-index: 1;
+  
+  * {
+    text-shadow:
+      0 0 2px #fff,
+      0 0 4px #fff,
+      1px 1px 0 #fff,
+      -1px -1px 0 #fff;
+  }
 `;
 
 const MainTitle = styled.h1`

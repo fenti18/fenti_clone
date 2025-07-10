@@ -166,6 +166,14 @@ const Bubble = styled.div`
   }
 `;
 
+const FadeInContainer = styled.div`
+  animation: fadeIn 0.8s ease;
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+`;
+
 const Home = () => {
   // Bubble color palette (all use same gradient now)
   // Generate random bubbles
@@ -189,46 +197,48 @@ const Home = () => {
   });
 
   return (
-    <HomeContainer>
-      <AnimatedBg>{bubbles}</AnimatedBg>
-      <Hero>
-        <HeroTitle>🎨 Belajar Huruf Hijaiyah</HeroTitle>
-        <HeroSubtitle>
-          Mari belajar huruf hijaiyah dengan cara yang menyenangkan! 
-          Aplikasi ini dirancang khusus untuk anak-anak usia dini.
-        </HeroSubtitle>
-      </Hero>
-      <MenuGrid>
-        <MenuCard to="/belajar">
-          <MenuIcon>📚</MenuIcon>
-          <MenuTitle>Belajar Huruf</MenuTitle>
-          <MenuDescription>
-            Pelajari huruf hijaiyah satu per satu dengan gambar dan suara yang menarik.
-          </MenuDescription>
-        </MenuCard>
-        <MenuCard to="/latihan">
-          <MenuIcon>✏️</MenuIcon>
-          <MenuTitle>Latihan Interaktif</MenuTitle>
-          <MenuDescription>
-            Latih kemampuanmu dengan permainan yang menyenangkan.
-          </MenuDescription>
-        </MenuCard>
-        <MenuCard to="/quiz">
-          <MenuIcon>🎮</MenuIcon>
-          <MenuTitle>Quiz Seru</MenuTitle>
-          <MenuDescription>
-            Uji pengetahuanmu dengan quiz yang menantang dan seru.
-          </MenuDescription>
-        </MenuCard>
-        <MenuCard to="/tentang">
-          <MenuIcon>ℹ️</MenuIcon>
-          <MenuTitle>Tentang Aplikasi</MenuTitle>
-          <MenuDescription>
-            Pelajari lebih lanjut tentang aplikasi dan cara menggunakannya.
-          </MenuDescription>
-        </MenuCard>
-      </MenuGrid>
-    </HomeContainer>
+    <FadeInContainer>
+      <HomeContainer>
+        <AnimatedBg>{bubbles}</AnimatedBg>
+        <Hero>
+          <HeroTitle>🎨 Belajar Huruf Hijaiyah</HeroTitle>
+          <HeroSubtitle>
+            Mari belajar huruf hijaiyah dengan cara yang menyenangkan! 
+            Aplikasi ini dirancang khusus untuk anak-anak usia dini.
+          </HeroSubtitle>
+        </Hero>
+        <MenuGrid>
+          <MenuCard to="/belajar">
+            <MenuIcon>📚</MenuIcon>
+            <MenuTitle>Belajar Huruf</MenuTitle>
+            <MenuDescription>
+              Pelajari huruf hijaiyah satu per satu dengan gambar dan suara yang menarik.
+            </MenuDescription>
+          </MenuCard>
+          <MenuCard to="/latihan">
+            <MenuIcon>✏️</MenuIcon>
+            <MenuTitle>Latihan Interaktif</MenuTitle>
+            <MenuDescription>
+              Latih kemampuanmu dengan permainan yang menyenangkan.
+            </MenuDescription>
+          </MenuCard>
+          <MenuCard to="/quiz">
+            <MenuIcon>🎮</MenuIcon>
+            <MenuTitle>Quiz Seru</MenuTitle>
+            <MenuDescription>
+              Uji pengetahuanmu dengan quiz yang menantang dan seru.
+            </MenuDescription>
+          </MenuCard>
+          <MenuCard to="/tentang">
+            <MenuIcon>ℹ️</MenuIcon>
+            <MenuTitle>Tentang Aplikasi</MenuTitle>
+            <MenuDescription>
+              Pelajari lebih lanjut tentang aplikasi dan cara menggunakannya.
+            </MenuDescription>
+          </MenuCard>
+        </MenuGrid>
+      </HomeContainer>
+    </FadeInContainer>
   );
 };
 
