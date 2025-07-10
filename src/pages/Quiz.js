@@ -65,7 +65,7 @@ const OptionsGrid = styled.div`
 
 const OptionButton = styled.button`
   background: #74b9ff;
-  color: white;
+  color: #222;
   border: none;
   border-radius: 25px;
   padding: 15px 30px;
@@ -74,6 +74,11 @@ const OptionButton = styled.button`
   cursor: pointer;
   margin: 10px;
   transition: all 0.3s ease;
+  text-shadow:
+    0 0 2px #fff,
+    0 0 4px #fff,
+    1px 1px 0 #fff,
+    -1px -1px 0 #fff;
   &:hover {
     transform: translateY(-2px);
     box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
@@ -115,7 +120,7 @@ const ResultMessage = styled.div`
 
 const NextButton = styled.button`
   background: #74b9ff;
-  color: white;
+  color: #222;
   border: none;
   border-radius: 25px;
   padding: 15px 30px;
@@ -124,6 +129,11 @@ const NextButton = styled.button`
   cursor: pointer;
   margin: 10px;
   transition: all 0.3s ease;
+  text-shadow:
+    0 0 2px #fff,
+    0 0 4px #fff,
+    1px 1px 0 #fff,
+    -1px -1px 0 #fff;
   &:hover {
     transform: translateY(-2px);
     box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
@@ -146,6 +156,14 @@ const RestartButton = styled.button`
     transform: translateY(-2px);
     box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
     background: #4fc3f7;
+  }
+`;
+
+const FadeInContainer = styled.div`
+  animation: fadeIn 0.8s ease;
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
   }
 `;
 
@@ -263,7 +281,7 @@ const Quiz = () => {
   const progress = ((currentQuestion + 1) / questions.length) * 100;
 
   return (
-    <>
+    <FadeInContainer>
       <BackButton />
       <QuizContainer>
         <Header>
@@ -341,7 +359,7 @@ const Quiz = () => {
           )}
         </QuizCard>
       </QuizContainer>
-    </>
+    </FadeInContainer>
   );
 };
 

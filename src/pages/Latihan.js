@@ -58,7 +58,7 @@ const OptionsGrid = styled.div`
 
 const OptionButton = styled.button`
   background: #74b9ff;
-  color: white;
+  color: #222;
   border: none;
   border-radius: 25px;
   padding: 15px 30px;
@@ -67,6 +67,11 @@ const OptionButton = styled.button`
   cursor: pointer;
   margin: 10px;
   transition: all 0.3s ease;
+  text-shadow:
+    0 0 2px #fff,
+    0 0 4px #fff,
+    1px 1px 0 #fff,
+    -1px -1px 0 #fff;
   &:hover {
     transform: translateY(-2px);
     box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
@@ -108,7 +113,7 @@ const ResultMessage = styled.div`
 
 const NextButton = styled.button`
   background: #74b9ff;
-  color: white;
+  color: #222;
   border: none;
   border-radius: 25px;
   padding: 15px 30px;
@@ -117,6 +122,11 @@ const NextButton = styled.button`
   cursor: pointer;
   margin: 10px;
   transition: all 0.3s ease;
+  text-shadow:
+    0 0 2px #fff,
+    0 0 4px #fff,
+    1px 1px 0 #fff,
+    -1px -1px 0 #fff;
   &:hover {
     transform: translateY(-2px);
     box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
@@ -139,6 +149,14 @@ const RestartButton = styled.button`
     transform: translateY(-2px);
     box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
     background: #4fc3f7;
+  }
+`;
+
+const FadeInContainer = styled.div`
+  animation: fadeIn 0.8s ease;
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
   }
 `;
 
@@ -224,69 +242,71 @@ const Latihan = () => {
           <Subtitle>Uji kemampuanmu dalam mengenali huruf hijaiyah!</Subtitle>
         </Header>
 
-        <GameCard>
-          <ScoreDisplay>
-            Skor: {score} / {questions.length}
-          </ScoreDisplay>
-          
-          <ProgressBar>
-            <ProgressFill progress={progress} />
-          </ProgressBar>
-          
-          <div>
-            Pertanyaan {currentQuestion + 1} dari {questions.length}
-          </div>
-
-          {/* Tampilkan huruf hijaiyah di atas hanya jika tipe soal 'huruf' */}
-          {currentQ.type === 'huruf' && (
-            <QuestionDisplay>{currentQ.huruf.huruf}</QuestionDisplay>
-          )}
-          <QuestionText>{currentQ.question}</QuestionText>
-
-          <OptionsGrid>
-            {currentQ.options.map((option, index) => (
-              <OptionButton
-                key={index}
-                onClick={() => handleAnswerClick(option)}
-                disabled={showResult}
-                correct={option === currentQ.correctAnswer}
-                incorrect={option === selectedAnswer && option !== currentQ.correctAnswer}
-                showResult={showResult}
-              >
-                {option}
-              </OptionButton>
-            ))}
-          </OptionsGrid>
-
-          {showResult && (
-            <ResultMessage correct={selectedAnswer === currentQ.correctAnswer}>
-              {selectedAnswer === currentQ.correctAnswer 
-                ? '🎉 Benar! Jawaban kamu tepat!' 
-                : `❌ Salah! Jawaban yang benar adalah: ${currentQ.correctAnswer}`
-              }
-            </ResultMessage>
-          )}
-
-          {showResult && currentQuestion < questions.length - 1 && (
-            <NextButton onClick={handleNextQuestion}>
-              Pertanyaan Berikutnya →
-            </NextButton>
-          )}
-
-          {showResult && currentQuestion === questions.length - 1 && (
+        <FadeInContainer>
+          <GameCard>
+            <ScoreDisplay>
+              Skor: {score} / {questions.length}
+            </ScoreDisplay>
+            
+            <ProgressBar>
+              <ProgressFill progress={progress} />
+            </ProgressBar>
+            
             <div>
-              <ResultMessage correct={score > questions.length / 2}>
-                {score > questions.length / 2 
-                  ? `🎉 Selamat! Kamu mendapatkan ${score} dari ${questions.length} poin!` 
-                  : `💪 Kamu mendapatkan ${score} dari ${questions.length} poin. Ayo coba lagi!`
+              Pertanyaan {currentQuestion + 1} dari {questions.length}
+            </div>
+
+            {/* Tampilkan huruf hijaiyah di atas hanya jika tipe soal 'huruf' */}
+            {currentQ.type === 'huruf' && (
+              <QuestionDisplay>{currentQ.huruf.huruf}</QuestionDisplay>
+            )}
+            <QuestionText>{currentQ.question}</QuestionText>
+
+            <OptionsGrid>
+              {currentQ.options.map((option, index) => (
+                <OptionButton
+                  key={index}
+                  onClick={() => handleAnswerClick(option)}
+                  disabled={showResult}
+                  correct={option === currentQ.correctAnswer}
+                  incorrect={option === selectedAnswer && option !== currentQ.correctAnswer}
+                  showResult={showResult}
+                >
+                  {option}
+                </OptionButton>
+              ))}
+            </OptionsGrid>
+
+            {showResult && (
+              <ResultMessage correct={selectedAnswer === currentQ.correctAnswer}>
+                {selectedAnswer === currentQ.correctAnswer 
+                  ? '🎉 Benar! Jawaban kamu tepat!' 
+                  : `❌ Salah! Jawaban yang benar adalah: ${currentQ.correctAnswer}`
                 }
               </ResultMessage>
-              <RestartButton onClick={handleRestart}>
-                Mulai Lagi
-              </RestartButton>
-            </div>
-          )}
-        </GameCard>
+            )}
+
+            {showResult && currentQuestion < questions.length - 1 && (
+              <NextButton onClick={handleNextQuestion}>
+                Pertanyaan Berikutnya →
+              </NextButton>
+            )}
+
+            {showResult && currentQuestion === questions.length - 1 && (
+              <div>
+                <ResultMessage correct={score > questions.length / 2}>
+                  {score > questions.length / 2 
+                    ? `🎉 Selamat! Kamu mendapatkan ${score} dari ${questions.length} poin!` 
+                    : `💪 Kamu mendapatkan ${score} dari ${questions.length} poin. Ayo coba lagi!`
+                  }
+                </ResultMessage>
+                <RestartButton onClick={handleRestart}>
+                  Mulai Lagi
+                </RestartButton>
+              </div>
+            )}
+          </GameCard>
+        </FadeInContainer>
       </LatihanContainer>
     </>
   );

@@ -3,7 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 
 const Nav = styled.nav`
-  background: #b9f6ca;
+  background: #ff922b;
   padding: 15px 0;
   box-shadow: 0 4px 20px rgba(0,0,0,0.1);
   position: sticky;
@@ -23,12 +23,12 @@ const NavContainer = styled.div`
 const Logo = styled(Link)`
   font-size: 1.8rem;
   font-weight: bold;
-  color: #222;
+  color: white;
   text-decoration: none;
-  text-shadow: 2px 2px 4px rgba(0,0,0,0.08);
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
   
   &:hover {
-    color: #388e3c;
+    color: #ffeaa7;
   }
 `;
 
@@ -43,16 +43,16 @@ const NavLinks = styled.div`
 `;
 
 const NavLink = styled(Link)`
-  color: #222;
+  color: white;
   text-decoration: none;
   padding: 10px 20px;
   border-radius: 25px;
   font-weight: 600;
   transition: all 0.3s ease;
-  background: ${props => props.active ? 'rgba(34,34,34,0.08)' : 'transparent'};
+  background: ${props => props.active ? 'rgba(255,255,255,0.2)' : 'transparent'};
   
   &:hover {
-    background: rgba(34,34,34,0.08);
+    background: rgba(255,255,255,0.2);
     transform: translateY(-2px);
   }
 `;

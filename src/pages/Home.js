@@ -54,7 +54,11 @@ const HeroTitle = styled.h1`
   font-size: 3.5rem;
   color: #2d3436;
   margin-bottom: 20px;
-  text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+  text-shadow:
+    0 0 2px #fff,
+    0 0 4px #fff,
+    1px 1px 0 #fff,
+    -1px -1px 0 #fff;
 `;
 
 const HeroSubtitle = styled.p`

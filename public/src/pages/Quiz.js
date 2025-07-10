@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { hijaiyahData } from '../data/hijaiyahData';
-import BackButton from '../components/BackButton';
 
 const QuizContainer = styled.div`
   padding: 20px;
@@ -64,20 +63,28 @@ const OptionsGrid = styled.div`
 `;
 
 const OptionButton = styled.button`
-  background: #74b9ff;
+  background: ${props => {
+    if (props.correct && props.showResult) return '#4CAF50';
+    if (props.incorrect && props.showResult) return '#f44336';
+    return 'linear-gradient(135deg, #667eea, #764ba2)';
+  }};
   color: white;
   border: none;
-  border-radius: 25px;
-  padding: 15px 30px;
-  font-size: 1.1rem;
+  border-radius: 20px;
+  padding: 20px;
+  font-size: 1.2rem;
   font-weight: bold;
   cursor: pointer;
-  margin: 10px;
   transition: all 0.3s ease;
+  
   &:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
-    background: #4fc3f7;
+    transform: ${props => props.showResult ? 'none' : 'translateY(-3px)'};
+    box-shadow: ${props => props.showResult ? 'none' : '0 8px 25px rgba(102, 126, 234, 0.4)'};
+  }
+  
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.8;
   }
 `;
 
@@ -114,46 +121,38 @@ const ResultMessage = styled.div`
 `;
 
 const NextButton = styled.button`
-  background: #74b9ff;
+  background: linear-gradient(135deg, #ff6b6b, #ee5a52);
   color: white;
   border: none;
   border-radius: 25px;
   padding: 15px 30px;
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   font-weight: bold;
   cursor: pointer;
-  margin: 10px;
+  margin: 20px;
   transition: all 0.3s ease;
+  
   &:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
-    background: #4fc3f7;
+    box-shadow: 0 8px 25px rgba(255, 107, 107, 0.4);
   }
 `;
 
 const RestartButton = styled.button`
-  background: #74b9ff;
+  background: linear-gradient(135deg, #667eea, #764ba2);
   color: white;
   border: none;
   border-radius: 25px;
   padding: 15px 30px;
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   font-weight: bold;
   cursor: pointer;
-  margin: 10px;
+  margin: 20px;
   transition: all 0.3s ease;
+  
   &:hover {
     transform: translateY(-2px);
     box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
-    background: #4fc3f7;
-  }
-`;
-
-const FadeInContainer = styled.div`
-  animation: fadeIn 0.8s ease;
-  @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(30px); }
-    to { opacity: 1; transform: translateY(0); }
   }
 `;
 
@@ -170,7 +169,9 @@ const Quiz = () => {
     const newQuestions = shuffledData.slice(0, 15).map((huruf, index) => {
       const questionTypes = ['huruf', 'nama', 'contoh'];
       const randomType = questionTypes[Math.floor(Math.random() * questionTypes.length)];
+      
       let questionText, correctAnswer, options;
+      
       switch(randomType) {
         case 'huruf':
           questionText = `Apa nama huruf ini?`;
@@ -188,6 +189,7 @@ const Quiz = () => {
           questionText = `Apa nama huruf ini?`;
           correctAnswer = huruf.nama;
       }
+      
       // Generate wrong answers
       const wrongAnswers = shuffledData
         .filter(h => h.id !== huruf.id)
@@ -201,7 +203,9 @@ const Quiz = () => {
             default: return h.nama;
           }
         });
+      
       options = [correctAnswer, ...wrongAnswers].sort(() => Math.random() - 0.5);
+      
       return {
         id: index,
         huruf: huruf,
@@ -211,6 +215,7 @@ const Quiz = () => {
         type: randomType
       };
     });
+    
     setQuestions(newQuestions);
   };
 
@@ -271,85 +276,79 @@ const Quiz = () => {
   const progress = ((currentQuestion + 1) / questions.length) * 100;
 
   return (
-    <FadeInContainer>
-      <BackButton />
-      <QuizContainer>
-        <Header>
-          <Title>🎮 Quiz Seru</Title>
-          <Subtitle>Uji pengetahuanmu dengan waktu terbatas!</Subtitle>
-        </Header>
+    <QuizContainer>
+      <Header>
+        <Title>🎮 Quiz Seru</Title>
+        <Subtitle>Uji pengetahuanmu dengan waktu terbatas!</Subtitle>
+      </Header>
 
-        <QuizCard>
-          <ScoreDisplay>
-            Skor: {score} / {questions.length}
-          </ScoreDisplay>
-          
-          <Timer time={timeLeft}>
-            ⏰ {timeLeft} detik
-          </Timer>
-          
-          <ProgressBar>
-            <ProgressFill progress={progress} />
-          </ProgressBar>
-          
+      <QuizCard>
+        <ScoreDisplay>
+          Skor: {score} / {questions.length}
+        </ScoreDisplay>
+        
+        <Timer time={timeLeft}>
+          ⏰ {timeLeft} detik
+        </Timer>
+        
+        <ProgressBar>
+          <ProgressFill progress={progress} />
+        </ProgressBar>
+        
+        <div>
+          Pertanyaan {currentQuestion + 1} dari {questions.length}
+        </div>
+
+        <QuestionDisplay>{currentQ.huruf.huruf}</QuestionDisplay>
+        <QuestionText>{currentQ.question}</QuestionText>
+
+        <OptionsGrid>
+          {currentQ.options.map((option, index) => (
+            <OptionButton
+              key={index}
+              onClick={() => handleAnswerClick(option)}
+              disabled={showResult}
+              correct={option === currentQ.correctAnswer}
+              incorrect={option === selectedAnswer && option !== currentQ.correctAnswer}
+              showResult={showResult}
+            >
+              {option}
+            </OptionButton>
+          ))}
+        </OptionsGrid>
+
+        {showResult && (
+          <ResultMessage correct={selectedAnswer === currentQ.correctAnswer}>
+            {selectedAnswer === 'timeout' 
+              ? '⏰ Waktu habis! Jawaban yang benar adalah: ' + currentQ.correctAnswer
+              : selectedAnswer === currentQ.correctAnswer 
+                ? '🎉 Benar! Jawaban kamu tepat!' 
+                : `❌ Salah! Jawaban yang benar adalah: ${currentQ.correctAnswer}`
+            }
+          </ResultMessage>
+        )}
+
+        {showResult && currentQuestion < questions.length - 1 && (
+          <NextButton onClick={handleNextQuestion}>
+            Pertanyaan Berikutnya →
+          </NextButton>
+        )}
+
+        {showResult && currentQuestion === questions.length - 1 && (
           <div>
-            Pertanyaan {currentQuestion + 1} dari {questions.length}
-          </div>
-
-          {/* Tampilkan huruf hijaiyah di atas hanya jika tipe soal 'huruf' */}
-          {currentQ.type === 'huruf' && (
-            <QuestionDisplay>{currentQ.huruf.huruf}</QuestionDisplay>
-          )}
-          <QuestionText>{currentQ.question}</QuestionText>
-
-          <OptionsGrid>
-            {currentQ.options.map((option, index) => (
-              <OptionButton
-                key={index}
-                onClick={() => handleAnswerClick(option)}
-                disabled={showResult}
-                correct={option === currentQ.correctAnswer}
-                incorrect={option === selectedAnswer && option !== currentQ.correctAnswer}
-                showResult={showResult}
-              >
-                {option}
-              </OptionButton>
-            ))}
-          </OptionsGrid>
-
-          {showResult && (
-            <ResultMessage correct={selectedAnswer === currentQ.correctAnswer}>
-              {selectedAnswer === 'timeout' 
-                ? '⏰ Waktu habis! Jawaban yang benar adalah: ' + currentQ.correctAnswer
-                : selectedAnswer === currentQ.correctAnswer 
-                  ? '🎉 Benar! Jawaban kamu tepat!' 
-                  : `❌ Salah! Jawaban yang benar adalah: ${currentQ.correctAnswer}`
+            <ResultMessage correct={score > questions.length / 2}>
+              {score > questions.length / 2 
+                ? `🎉 Selamat! Kamu mendapatkan ${score} dari ${questions.length} poin!` 
+                : `💪 Kamu mendapatkan ${score} dari ${questions.length} poin. Ayo coba lagi!`
               }
             </ResultMessage>
-          )}
-
-          {showResult && currentQuestion < questions.length - 1 && (
-            <NextButton onClick={handleNextQuestion}>
-              Pertanyaan Berikutnya →
-            </NextButton>
-          )}
-
-          {showResult && currentQuestion === questions.length - 1 && (
-            <div>
-              <ResultMessage correct={score > questions.length / 2}>
-                {score > questions.length / 2 
-                  ? `🎉 Selamat! Kamu mendapatkan ${score} dari ${questions.length} poin!` 
-                  : `💪 Kamu mendapatkan ${score} dari ${questions.length} poin. Ayo coba lagi!`
-                }
-              </ResultMessage>
-              <RestartButton onClick={handleRestart}>
-                Mulai Lagi
-              </RestartButton>
-            </div>
-          )}
-        </QuizCard>
-      </QuizContainer>
-    </FadeInContainer>
+            <RestartButton onClick={handleRestart}>
+              Mulai Lagi
+            </RestartButton>
+          </div>
+        )}
+      </QuizCard>
+    </QuizContainer>
   );
 };
 

@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import BackButton from '../components/BackButton';
 
 const TentangContainer = styled.div`
   padding: 20px;
@@ -99,8 +98,8 @@ const TipsItem = styled.li`
 `;
 
 const ContactInfo = styled.div`
-  background: #ffe066;
-  color: #2d3436;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: white;
   padding: 30px;
   border-radius: 20px;
   text-align: center;
@@ -117,144 +116,131 @@ const ContactText = styled.p`
   margin: 10px 0;
 `;
 
-const FadeInContainer = styled.div`
-  animation: fadeIn 0.8s ease;
-  @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(30px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-`;
-
 const Tentang = () => {
   return (
-    <>
-      <BackButton />
-      <TentangContainer>
-        <Header>
-          <Title>ℹ️ Tentang Aplikasi</Title>
-          <Subtitle>Belajar Huruf Hijaiyah untuk Anak Usia Dini</Subtitle>
-        </Header>
+    <TentangContainer>
+      <Header>
+        <Title>ℹ️ Tentang Aplikasi</Title>
+        <Subtitle>Belajar Huruf Hijaiyah untuk Anak Usia Dini</Subtitle>
+      </Header>
 
-        <FadeInContainer>
-          <ContentCard>
-            <SectionTitle>🎯 Tujuan Aplikasi</SectionTitle>
-            <SectionContent>
-              Aplikasi ini dirancang khusus untuk membantu anak-anak usia dini dalam mempelajari 
-              huruf hijaiyah dengan cara yang menyenangkan dan interaktif. Melalui kombinasi 
-              visual, audio, dan permainan, anak-anak dapat belajar dengan lebih efektif dan 
-              tidak merasa bosan.
-            </SectionContent>
-          </ContentCard>
+      <ContentCard>
+        <SectionTitle>🎯 Tujuan Aplikasi</SectionTitle>
+        <SectionContent>
+          Aplikasi ini dirancang khusus untuk membantu anak-anak usia dini dalam mempelajari 
+          huruf hijaiyah dengan cara yang menyenangkan dan interaktif. Melalui kombinasi 
+          visual, audio, dan permainan, anak-anak dapat belajar dengan lebih efektif dan 
+          tidak merasa bosan.
+        </SectionContent>
+      </ContentCard>
 
-          <ContentCard>
-            <SectionTitle>✨ Fitur Utama</SectionTitle>
-            <FeatureList>
-              <FeatureItem>
-                <FeatureIcon>📚</FeatureIcon>
-                <FeatureText>
-                  <FeatureTitle>Belajar Huruf</FeatureTitle>
-                  <FeatureDescription>
-                    Pelajari 28 huruf hijaiyah dengan tampilan yang menarik, 
-                    dilengkapi dengan contoh kata dan artinya.
-                  </FeatureDescription>
-                </FeatureText>
-              </FeatureItem>
-              
-              <FeatureItem>
-                <FeatureIcon>✏️</FeatureIcon>
-                <FeatureText>
-                  <FeatureTitle>Latihan Interaktif</FeatureTitle>
-                  <FeatureDescription>
-                    Latih kemampuan dengan permainan sederhana yang menguji 
-                    pemahaman anak tentang huruf hijaiyah.
-                  </FeatureDescription>
-                </FeatureText>
-              </FeatureItem>
-              
-              <FeatureItem>
-                <FeatureIcon>🎮</FeatureIcon>
-                <FeatureText>
-                  <FeatureTitle>Quiz Seru</FeatureTitle>
-                  <FeatureDescription>
-                    Uji pengetahuan dengan quiz yang menantang dan memiliki 
-                    batas waktu untuk meningkatkan konsentrasi.
-                  </FeatureDescription>
-                </FeatureText>
-              </FeatureItem>
-              
-              <FeatureItem>
-                <FeatureIcon>🔊</FeatureIcon>
-                <FeatureText>
-                  <FeatureTitle>Audio Pelafalan</FeatureTitle>
-                  <FeatureDescription>
-                    Dengarkan pelafalan yang benar untuk setiap huruf 
-                    hijaiyah untuk membantu pengucapan yang tepat.
-                  </FeatureDescription>
-                </FeatureText>
-              </FeatureItem>
-              
-              <FeatureItem>
-                <FeatureIcon>🎨</FeatureIcon>
-                <FeatureText>
-                  <FeatureTitle>Desain Ramah Anak</FeatureTitle>
-                  <FeatureDescription>
-                    Interface yang colorful dan menarik dengan animasi 
-                    yang membuat belajar menjadi menyenangkan.
-                  </FeatureDescription>
-                </FeatureText>
-              </FeatureItem>
-            </FeatureList>
-          </ContentCard>
+      <ContentCard>
+        <SectionTitle>✨ Fitur Utama</SectionTitle>
+        <FeatureList>
+          <FeatureItem>
+            <FeatureIcon>📚</FeatureIcon>
+            <FeatureText>
+              <FeatureTitle>Belajar Huruf</FeatureTitle>
+              <FeatureDescription>
+                Pelajari 28 huruf hijaiyah dengan tampilan yang menarik, 
+                dilengkapi dengan contoh kata dan artinya.
+              </FeatureDescription>
+            </FeatureText>
+          </FeatureItem>
+          
+          <FeatureItem>
+            <FeatureIcon>✏️</FeatureIcon>
+            <FeatureText>
+              <FeatureTitle>Latihan Interaktif</FeatureTitle>
+              <FeatureDescription>
+                Latih kemampuan dengan permainan sederhana yang menguji 
+                pemahaman anak tentang huruf hijaiyah.
+              </FeatureDescription>
+            </FeatureText>
+          </FeatureItem>
+          
+          <FeatureItem>
+            <FeatureIcon>🎮</FeatureIcon>
+            <FeatureText>
+              <FeatureTitle>Quiz Seru</FeatureTitle>
+              <FeatureDescription>
+                Uji pengetahuan dengan quiz yang menantang dan memiliki 
+                batas waktu untuk meningkatkan konsentrasi.
+              </FeatureDescription>
+            </FeatureText>
+          </FeatureItem>
+          
+          <FeatureItem>
+            <FeatureIcon>🔊</FeatureIcon>
+            <FeatureText>
+              <FeatureTitle>Audio Pelafalan</FeatureTitle>
+              <FeatureDescription>
+                Dengarkan pelafalan yang benar untuk setiap huruf 
+                hijaiyah untuk membantu pengucapan yang tepat.
+              </FeatureDescription>
+            </FeatureText>
+          </FeatureItem>
+          
+          <FeatureItem>
+            <FeatureIcon>🎨</FeatureIcon>
+            <FeatureText>
+              <FeatureTitle>Desain Ramah Anak</FeatureTitle>
+              <FeatureDescription>
+                Interface yang colorful dan menarik dengan animasi 
+                yang membuat belajar menjadi menyenangkan.
+              </FeatureDescription>
+            </FeatureText>
+          </FeatureItem>
+        </FeatureList>
+      </ContentCard>
 
-          <ContentCard>
-            <SectionTitle>📖 Cara Penggunaan</SectionTitle>
-            <TipsList>
-              <TipsItem>
-                <strong>Beranda:</strong> Mulai dari halaman utama untuk melihat semua fitur yang tersedia.
-              </TipsItem>
-              <TipsItem>
-                <strong>Belajar:</strong> Klik huruf hijaiyah untuk melihat detail lengkap termasuk contoh kata dan artinya.
-              </TipsItem>
-              <TipsItem>
-                <strong>Latihan:</strong> Pilih jawaban yang benar berdasarkan pertanyaan yang diberikan.
-              </TipsItem>
-              <TipsItem>
-                <strong>Quiz:</strong> Jawab pertanyaan dengan batas waktu untuk menguji kecepatan dan ketepatan.
-              </TipsItem>
-              <TipsItem>
-                <strong>Audio:</strong> Klik tombol audio untuk mendengarkan pelafalan yang benar.
-              </TipsItem>
-            </TipsList>
-          </ContentCard>
+      <ContentCard>
+        <SectionTitle>📖 Cara Penggunaan</SectionTitle>
+        <TipsList>
+          <TipsItem>
+            <strong>Beranda:</strong> Mulai dari halaman utama untuk melihat semua fitur yang tersedia.
+          </TipsItem>
+          <TipsItem>
+            <strong>Belajar:</strong> Klik huruf hijaiyah untuk melihat detail lengkap termasuk contoh kata dan artinya.
+          </TipsItem>
+          <TipsItem>
+            <strong>Latihan:</strong> Pilih jawaban yang benar berdasarkan pertanyaan yang diberikan.
+          </TipsItem>
+          <TipsItem>
+            <strong>Quiz:</strong> Jawab pertanyaan dengan batas waktu untuk menguji kecepatan dan ketepatan.
+          </TipsItem>
+          <TipsItem>
+            <strong>Audio:</strong> Klik tombol audio untuk mendengarkan pelafalan yang benar.
+          </TipsItem>
+        </TipsList>
+      </ContentCard>
 
-          <ContentCard>
-            <SectionTitle>🎓 Manfaat Pembelajaran</SectionTitle>
-            <SectionContent>
-              <ul style={{ lineHeight: '1.8', paddingLeft: '20px' }}>
-                <li>Mengenalkan huruf hijaiyah sejak dini</li>
-                <li>Meningkatkan kemampuan membaca Al-Qur'an</li>
-                <li>Mengembangkan keterampilan kognitif anak</li>
-                <li>Membuat pembelajaran agama menjadi menyenangkan</li>
-                <li>Mendorong minat belajar bahasa Arab</li>
-              </ul>
-            </SectionContent>
-          </ContentCard>
+      <ContentCard>
+        <SectionTitle>🎓 Manfaat Pembelajaran</SectionTitle>
+        <SectionContent>
+          <ul style={{ lineHeight: '1.8', paddingLeft: '20px' }}>
+            <li>Mengenalkan huruf hijaiyah sejak dini</li>
+            <li>Meningkatkan kemampuan membaca Al-Qur'an</li>
+            <li>Mengembangkan keterampilan kognitif anak</li>
+            <li>Membuat pembelajaran agama menjadi menyenangkan</li>
+            <li>Mendorong minat belajar bahasa Arab</li>
+          </ul>
+        </SectionContent>
+      </ContentCard>
 
-          <ContactInfo>
-            <ContactTitle>📞 Informasi Kontak</ContactTitle>
-            <ContactText>
-              telp : 085951337102
-            </ContactText>
-            <ContactText>
-              email : ferbiantifenti@gmail.com
-            </ContactText>
-            <ContactText>
-              Hubungi kontak diatas jika ada kendala! Terimakasih^^
-            </ContactText>
-          </ContactInfo>
-        </FadeInContainer>
-      </TentangContainer>
-    </>
+      <ContactInfo>
+        <ContactTitle>📞 Informasi Kontak</ContactTitle>
+        <ContactText>
+          Aplikasi ini dikembangkan sebagai tugas akhir untuk pembelajaran huruf hijaiyah.
+        </ContactText>
+        <ContactText>
+          Dikembangkan dengan React.js dan styled-components untuk pengalaman yang optimal.
+        </ContactText>
+        <ContactText>
+          Semoga aplikasi ini bermanfaat untuk pembelajaran anak-anak usia dini.
+        </ContactText>
+      </ContactInfo>
+    </TentangContainer>
   );
 };
 
