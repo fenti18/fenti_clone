@@ -136,7 +136,7 @@ const NextButton = styled.button`
 
 const RestartButton = styled.button`
   background: #74b9ff;
-  color: white;
+  color: #222;
   border: none;
   border-radius: 25px;
   padding: 15px 30px;
@@ -145,6 +145,11 @@ const RestartButton = styled.button`
   cursor: pointer;
   margin: 10px;
   transition: all 0.3s ease;
+  text-shadow:
+    0 0 2px #fff,
+    0 0 4px #fff,
+    1px 1px 0 #fff,
+    -1px -1px 0 #fff;
   &:hover {
     transform: translateY(-2px);
     box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
@@ -158,6 +163,37 @@ const FadeInContainer = styled.div`
     from { opacity: 0; transform: translateY(30px); }
     to { opacity: 1; transform: translateY(0); }
   }
+`;
+
+const FinishCard = styled.div`
+  background: #ffe066;
+  border-radius: 25px;
+  padding: 40px 30px;
+  margin: 30px auto 0 auto;
+  max-width: 400px;
+  text-align: center;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+`;
+const FinishTitle = styled.h2`
+  font-size: 2.2rem;
+  color: #222;
+  margin-bottom: 18px;
+  text-shadow:
+    0 0 2px #fff,
+    0 0 4px #fff,
+    1px 1px 0 #fff,
+    -1px -1px 0 #fff;
+`;
+const FinishScore = styled.div`
+  font-size: 1.5rem;
+  color: #222;
+  margin-bottom: 12px;
+  font-weight: bold;
+`;
+const FinishMessage = styled.div`
+  font-size: 1.1rem;
+  color: #222;
+  margin-bottom: 24px;
 `;
 
 const Latihan = () => {
@@ -243,69 +279,64 @@ const Latihan = () => {
         </Header>
 
         <FadeInContainer>
-          <GameCard>
-            <ScoreDisplay>
-              Skor: {score} / {questions.length}
-            </ScoreDisplay>
-            
-            <ProgressBar>
-              <ProgressFill progress={progress} />
-            </ProgressBar>
-            
-            <div>
-              Pertanyaan {currentQuestion + 1} dari {questions.length}
-            </div>
-
-            {/* Tampilkan huruf hijaiyah di atas hanya jika tipe soal 'huruf' */}
-            {currentQ.type === 'huruf' && (
-              <QuestionDisplay>{currentQ.huruf.huruf}</QuestionDisplay>
-            )}
-            <QuestionText>{currentQ.question}</QuestionText>
-
-            <OptionsGrid>
-              {currentQ.options.map((option, index) => (
-                <OptionButton
-                  key={index}
-                  onClick={() => handleAnswerClick(option)}
-                  disabled={showResult}
-                  correct={option === currentQ.correctAnswer}
-                  incorrect={option === selectedAnswer && option !== currentQ.correctAnswer}
-                  showResult={showResult}
-                >
-                  {option}
-                </OptionButton>
-              ))}
-            </OptionsGrid>
-
-            {showResult && (
-              <ResultMessage correct={selectedAnswer === currentQ.correctAnswer}>
-                {selectedAnswer === currentQ.correctAnswer 
-                  ? '🎉 Benar! Jawaban kamu tepat!' 
-                  : `❌ Salah! Jawaban yang benar adalah: ${currentQ.correctAnswer}`
-                }
-              </ResultMessage>
-            )}
-
-            {showResult && currentQuestion < questions.length - 1 && (
-              <NextButton onClick={handleNextQuestion}>
-                Pertanyaan Berikutnya →
-              </NextButton>
-            )}
-
-            {showResult && currentQuestion === questions.length - 1 && (
+          {showResult && currentQuestion === questions.length - 1 ? (
+            <FinishCard>
+              <FinishTitle>🎉 Yeay kamu hebat!</FinishTitle>
+              <FinishScore>Kamu mendapatkan skor {score} dari {questions.length}</FinishScore>
+              <FinishMessage>Ayo terus semangat belajar!</FinishMessage>
+              <RestartButton onClick={handleRestart}>Mulai Lagi</RestartButton>
+            </FinishCard>
+          ) : (
+            <GameCard>
+              <ScoreDisplay>
+                Skor: {score} / {questions.length}
+              </ScoreDisplay>
+              
+              <ProgressBar>
+                <ProgressFill progress={progress} />
+              </ProgressBar>
+              
               <div>
-                <ResultMessage correct={score > questions.length / 2}>
-                  {score > questions.length / 2 
-                    ? `🎉 Selamat! Kamu mendapatkan ${score} dari ${questions.length} poin!` 
-                    : `💪 Kamu mendapatkan ${score} dari ${questions.length} poin. Ayo coba lagi!`
+                Pertanyaan {currentQuestion + 1} dari {questions.length}
+              </div>
+
+              {/* Tampilkan huruf hijaiyah di atas hanya jika tipe soal 'huruf' */}
+              {currentQ.type === 'huruf' && (
+                <QuestionDisplay>{currentQ.huruf.huruf}</QuestionDisplay>
+              )}
+              <QuestionText>{currentQ.question}</QuestionText>
+
+              <OptionsGrid>
+                {currentQ.options.map((option, index) => (
+                  <OptionButton
+                    key={index}
+                    onClick={() => handleAnswerClick(option)}
+                    disabled={showResult}
+                    correct={option === currentQ.correctAnswer}
+                    incorrect={option === selectedAnswer && option !== currentQ.correctAnswer}
+                    showResult={showResult}
+                  >
+                    {option}
+                  </OptionButton>
+                ))}
+              </OptionsGrid>
+
+              {showResult && (
+                <ResultMessage correct={selectedAnswer === currentQ.correctAnswer}>
+                  {selectedAnswer === currentQ.correctAnswer 
+                    ? '🎉 Benar! Jawaban kamu tepat!' 
+                    : `❌ Salah! Jawaban yang benar adalah: ${currentQ.correctAnswer}`
                   }
                 </ResultMessage>
-                <RestartButton onClick={handleRestart}>
-                  Mulai Lagi
-                </RestartButton>
-              </div>
-            )}
-          </GameCard>
+              )}
+
+              {showResult && currentQuestion < questions.length - 1 && (
+                <NextButton onClick={handleNextQuestion}>
+                  Pertanyaan Berikutnya →
+                </NextButton>
+              )}
+            </GameCard>
+          )}
         </FadeInContainer>
       </LatihanContainer>
     </>
