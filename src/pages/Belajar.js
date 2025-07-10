@@ -179,52 +179,52 @@ const Belajar = () => {
   return (
     <>
       <BackButton />
-      <BelajarContainer>
-        <Header>
+    <BelajarContainer>
+      <Header>
           <Title>📚 Ayo belajar huruf hijaiyah!</Title>
-          <Subtitle>Klik huruf untuk mempelajari lebih lanjut</Subtitle>
-        </Header>
+        <Subtitle>Klik huruf untuk mempelajari lebih lanjut</Subtitle>
+      </Header>
 
-        <HurufGrid>
-          {hijaiyahData.map((huruf) => (
-            <HurufCard key={huruf.id} onClick={() => handleHurufClick(huruf)}>
-              <HurufDisplay>{huruf.huruf}</HurufDisplay>
-              <HurufName>{huruf.nama}</HurufName>
-              <HurufLatin>{huruf.latin}</HurufLatin>
-            </HurufCard>
-          ))}
-        </HurufGrid>
+      <HurufGrid>
+        {hijaiyahData.map((huruf) => (
+          <HurufCard key={huruf.id} onClick={() => handleHurufClick(huruf)}>
+            <HurufDisplay>{huruf.huruf}</HurufDisplay>
+            <HurufName>{huruf.nama}</HurufName>
+            <HurufLatin>{huruf.latin}</HurufLatin>
+          </HurufCard>
+        ))}
+      </HurufGrid>
 
-        {selectedHuruf && (
-          <Modal onClick={handleCloseModal}>
-            <ModalContent onClick={(e) => e.stopPropagation()}>
-              <CloseButton onClick={handleCloseModal}>×</CloseButton>
-              
-              <ModalHuruf>{selectedHuruf.huruf}</ModalHuruf>
-              <ModalTitle>{selectedHuruf.nama}</ModalTitle>
-              
-              <ModalInfo>
-                <InfoItem>
-                  <InfoLabel>Nama Latin:</InfoLabel> {selectedHuruf.latin}
-                </InfoItem>
-                <InfoItem>
-                  <InfoLabel>Contoh Kata:</InfoLabel> {selectedHuruf.contoh}
-                </InfoItem>
-                <InfoItem>
-                  <InfoLabel>Arti:</InfoLabel> {selectedHuruf.arti}
-                </InfoItem>
-                <InfoItem>
-                  <InfoLabel>Deskripsi:</InfoLabel> {selectedHuruf.deskripsi}
-                </InfoItem>
-              </ModalInfo>
+      {selectedHuruf && (
+        <Modal onClick={handleCloseModal}>
+          <ModalContent onClick={(e) => e.stopPropagation()}>
+            <CloseButton onClick={handleCloseModal}>×</CloseButton>
+            
+            <ModalHuruf>{selectedHuruf.huruf}</ModalHuruf>
+            <ModalTitle>{selectedHuruf.nama}</ModalTitle>
+            
+            <ModalInfo>
+              <InfoItem>
+                <InfoLabel>Nama Latin:</InfoLabel> {selectedHuruf.latin}
+              </InfoItem>
+              <InfoItem>
+                <InfoLabel>Contoh Kata:</InfoLabel> {selectedHuruf.contoh}
+              </InfoItem>
+              <InfoItem>
+                <InfoLabel>Arti:</InfoLabel> {selectedHuruf.arti}
+              </InfoItem>
+              <InfoItem>
+                <InfoLabel>Deskripsi:</InfoLabel> {selectedHuruf.deskripsi}
+              </InfoItem>
+            </ModalInfo>
 
-              <PlayButton onClick={playAudio} disabled={isPlaying}>
-                {isPlaying ? '🔊 Memutar...' : '🔊 Dengarkan Suara'}
-              </PlayButton>
-            </ModalContent>
-          </Modal>
-        )}
-      </BelajarContainer>
+            <PlayButton onClick={playAudio} disabled={isPlaying}>
+              {isPlaying ? '🔊 Memutar...' : '🔊 Dengarkan Suara'}
+            </PlayButton>
+          </ModalContent>
+        </Modal>
+      )}
+    </BelajarContainer>
     </>
   );
 };

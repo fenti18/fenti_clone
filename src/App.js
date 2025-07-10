@@ -6,6 +6,7 @@ import Belajar from './pages/Belajar';
 import Latihan from './pages/Latihan';
 import Quiz from './pages/Quiz';
 import Tentang from './pages/Tentang';
+import Landing from './pages/Landing';
 
 function App() {
   return (
@@ -14,7 +15,8 @@ function App() {
         <Navbar />
         <div className="container">
           <Routes>
-            <Route path="/" element={<Home />} />
+            <Route path="/" element={<Landing />} />
+            <Route path="/home" element={<Home />} />
             <Route path="/belajar" element={<Belajar />} />
             <Route path="/latihan" element={<Latihan />} />
             <Route path="/quiz" element={<Quiz />} />

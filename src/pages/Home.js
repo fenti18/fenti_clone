@@ -7,6 +7,41 @@ const HomeContainer = styled.div`
   padding: 40px 20px;
 `;
 
+const MainScreen = styled.div`
+  background: linear-gradient(135deg, #74b9ff, #0984e3);
+  border-radius: 30px;
+  padding: 80px 40px;
+  margin-bottom: 40px;
+  text-align: center;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+`;
+
+const MainTitle = styled.h1`
+  font-size: 4rem;
+  color: white;
+  margin-bottom: 30px;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+`;
+
+const StartButton = styled.button`
+  background: #ffe066;
+  color: #2d3436;
+  border: none;
+  border-radius: 25px;
+  padding: 20px 40px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+    background: #fdcb6e;
+  }
+`;
+
 const Hero = styled.div`
   background: #ffe066;
   border-radius: 30px;
@@ -163,7 +198,6 @@ const Home = () => {
           Aplikasi ini dirancang khusus untuk anak-anak usia dini.
         </HeroSubtitle>
       </Hero>
-      
       <MenuGrid>
         <MenuCard to="/belajar">
           <MenuIcon>📚</MenuIcon>
@@ -172,7 +206,6 @@ const Home = () => {
             Pelajari huruf hijaiyah satu per satu dengan gambar dan suara yang menarik.
           </MenuDescription>
         </MenuCard>
-        
         <MenuCard to="/latihan">
           <MenuIcon>✏️</MenuIcon>
           <MenuTitle>Latihan Interaktif</MenuTitle>
@@ -180,7 +213,6 @@ const Home = () => {
             Latih kemampuanmu dengan permainan yang menyenangkan.
           </MenuDescription>
         </MenuCard>
-        
         <MenuCard to="/quiz">
           <MenuIcon>🎮</MenuIcon>
           <MenuTitle>Quiz Seru</MenuTitle>
@@ -188,7 +220,6 @@ const Home = () => {
             Uji pengetahuanmu dengan quiz yang menantang dan seru.
           </MenuDescription>
         </MenuCard>
-        
         <MenuCard to="/tentang">
           <MenuIcon>ℹ️</MenuIcon>
           <MenuTitle>Tentang Aplikasi</MenuTitle>
