@@ -7,6 +7,41 @@ const HomeContainer = styled.div`
   padding: 40px 20px;
 `;
 
+const MainScreen = styled.div`
+  background: linear-gradient(135deg, #74b9ff, #0984e3);
+  border-radius: 30px;
+  padding: 80px 40px;
+  margin-bottom: 40px;
+  text-align: center;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+`;
+
+const MainTitle = styled.h1`
+  font-size: 4rem;
+  color: white;
+  margin-bottom: 30px;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+`;
+
+const StartButton = styled.button`
+  background: #ffe066;
+  color: #2d3436;
+  border: none;
+  border-radius: 25px;
+  padding: 20px 40px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+    background: #fdcb6e;
+  }
+`;
+
 const Hero = styled.div`
   background: #ffe066;
   border-radius: 30px;
@@ -19,7 +54,11 @@ const HeroTitle = styled.h1`
   font-size: 3.5rem;
   color: #2d3436;
   margin-bottom: 20px;
-  text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+  text-shadow:
+    0 0 2px #fff,
+    0 0 4px #fff,
+    1px 1px 0 #fff,
+    -1px -1px 0 #fff;
 `;
 
 const HeroSubtitle = styled.p`
@@ -131,6 +170,14 @@ const Bubble = styled.div`
   }
 `;
 
+const FadeInContainer = styled.div`
+  animation: fadeIn 0.8s ease;
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+`;
+
 const Home = () => {
   // Bubble color palette (all use same gradient now)
   // Generate random bubbles
@@ -154,50 +201,48 @@ const Home = () => {
   });
 
   return (
-    <HomeContainer>
-      <AnimatedBg>{bubbles}</AnimatedBg>
-      <Hero>
-        <HeroTitle>🎨 Belajar Huruf Hijaiyah</HeroTitle>
-        <HeroSubtitle>
-          Mari belajar huruf hijaiyah dengan cara yang menyenangkan! 
-          Aplikasi ini dirancang khusus untuk anak-anak usia dini.
-        </HeroSubtitle>
-      </Hero>
-      
-      <MenuGrid>
-        <MenuCard to="/belajar">
-          <MenuIcon>📚</MenuIcon>
-          <MenuTitle>Belajar Huruf</MenuTitle>
-          <MenuDescription>
-            Pelajari huruf hijaiyah satu per satu dengan gambar dan suara yang menarik.
-          </MenuDescription>
-        </MenuCard>
-        
-        <MenuCard to="/latihan">
-          <MenuIcon>✏️</MenuIcon>
-          <MenuTitle>Latihan Interaktif</MenuTitle>
-          <MenuDescription>
-            Latih kemampuanmu dengan permainan yang menyenangkan.
-          </MenuDescription>
-        </MenuCard>
-        
-        <MenuCard to="/quiz">
-          <MenuIcon>🎮</MenuIcon>
-          <MenuTitle>Quiz Seru</MenuTitle>
-          <MenuDescription>
-            Uji pengetahuanmu dengan quiz yang menantang dan seru.
-          </MenuDescription>
-        </MenuCard>
-        
-        <MenuCard to="/tentang">
-          <MenuIcon>ℹ️</MenuIcon>
-          <MenuTitle>Tentang Aplikasi</MenuTitle>
-          <MenuDescription>
-            Pelajari lebih lanjut tentang aplikasi dan cara menggunakannya.
-          </MenuDescription>
-        </MenuCard>
-      </MenuGrid>
-    </HomeContainer>
+    <FadeInContainer>
+      <HomeContainer>
+        <AnimatedBg>{bubbles}</AnimatedBg>
+        <Hero>
+          <HeroTitle>🎨 Belajar Huruf Hijaiyah</HeroTitle>
+          <HeroSubtitle>
+            Mari belajar huruf hijaiyah dengan cara yang menyenangkan! 
+            Aplikasi ini dirancang khusus untuk anak-anak usia dini.
+          </HeroSubtitle>
+        </Hero>
+        <MenuGrid>
+          <MenuCard to="/belajar">
+            <MenuIcon>📚</MenuIcon>
+            <MenuTitle>Belajar Huruf</MenuTitle>
+            <MenuDescription>
+              Pelajari huruf hijaiyah satu per satu dengan gambar dan suara yang menarik.
+            </MenuDescription>
+          </MenuCard>
+          <MenuCard to="/latihan">
+            <MenuIcon>✏️</MenuIcon>
+            <MenuTitle>Latihan Interaktif</MenuTitle>
+            <MenuDescription>
+              Latih kemampuanmu dengan permainan yang menyenangkan.
+            </MenuDescription>
+          </MenuCard>
+          <MenuCard to="/quiz">
+            <MenuIcon>🎮</MenuIcon>
+            <MenuTitle>Quiz Seru</MenuTitle>
+            <MenuDescription>
+              Uji pengetahuanmu dengan quiz yang menantang dan seru.
+            </MenuDescription>
+          </MenuCard>
+          <MenuCard to="/tentang">
+            <MenuIcon>ℹ️</MenuIcon>
+            <MenuTitle>Tentang Aplikasi</MenuTitle>
+            <MenuDescription>
+              Pelajari lebih lanjut tentang aplikasi dan cara menggunakannya.
+            </MenuDescription>
+          </MenuCard>
+        </MenuGrid>
+      </HomeContainer>
+    </FadeInContainer>
   );
 };
 

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { hijaiyahData } from '../data/hijaiyahData';
+import BackButton from '../components/BackButton';
 
 const BelajarContainer = styled.div`
   padding: 20px;
@@ -24,7 +25,8 @@ const Subtitle = styled.p`
 
 const HurufGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(7, auto);
   gap: 20px;
   margin-bottom: 40px;
 `;
@@ -138,7 +140,7 @@ const InfoLabel = styled.span`
 `;
 
 const PlayButton = styled.button`
-  background: linear-gradient(135deg, #667eea, #764ba2);
+  background: #74b9ff;
   color: white;
   border: none;
   border-radius: 25px;
@@ -148,10 +150,10 @@ const PlayButton = styled.button`
   cursor: pointer;
   margin: 10px;
   transition: all 0.3s ease;
-  
   &:hover {
     transform: translateY(-2px);
     box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+    background: #4fc3f7;
   }
 `;
 
@@ -175,9 +177,11 @@ const Belajar = () => {
   };
 
   return (
+    <>
+      <BackButton />
     <BelajarContainer>
       <Header>
-        <Title>📚 Belajar Huruf Hijaiyah</Title>
+          <Title>📚 Ayo belajar huruf hijaiyah!</Title>
         <Subtitle>Klik huruf untuk mempelajari lebih lanjut</Subtitle>
       </Header>
 
@@ -221,6 +225,7 @@ const Belajar = () => {
         </Modal>
       )}
     </BelajarContainer>
+    </>
   );
 };
 
