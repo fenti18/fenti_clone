@@ -149,6 +149,14 @@ const RestartButton = styled.button`
   }
 `;
 
+const FadeInContainer = styled.div`
+  animation: fadeIn 0.8s ease;
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+`;
+
 const Quiz = () => {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [score, setScore] = useState(0);
@@ -263,7 +271,7 @@ const Quiz = () => {
   const progress = ((currentQuestion + 1) / questions.length) * 100;
 
   return (
-    <>
+    <FadeInContainer>
       <BackButton />
       <QuizContainer>
         <Header>
@@ -341,7 +349,7 @@ const Quiz = () => {
           )}
         </QuizCard>
       </QuizContainer>
-    </>
+    </FadeInContainer>
   );
 };
 
