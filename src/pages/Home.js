@@ -48,6 +48,10 @@ const Hero = styled.div`
   padding: 60px 40px;
   margin-bottom: 40px;
   box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
 `;
 
 const HeroTitle = styled.h1`
@@ -59,13 +63,15 @@ const HeroTitle = styled.h1`
     0 0 4px #fff,
     1px 1px 0 #fff,
     -1px -1px 0 #fff;
+  text-align: center;
 `;
 
 const HeroSubtitle = styled.p`
-  font-size: 1.3rem;
+  font-size: 1.6rem;
   color: #636e72;
-  margin-bottom: 30px;
-  line-height: 1.6;
+  margin-bottom: 32px;
+  line-height: 1.7;
+  text-align: center;
 `;
 
 const MenuGrid = styled.div`
@@ -75,12 +81,7 @@ const MenuGrid = styled.div`
   gap: 30px;
   margin-top: 40px;
   justify-items: center;
-  align-items: stretch;
-
-  @media (max-width: 700px) {
-    grid-template-columns: 1fr;
-    grid-template-rows: none;
-  }
+  align-items: center;
 `;
 
 const MenuCard = styled(Link)`
@@ -100,6 +101,7 @@ const MenuCard = styled(Link)`
   height: 100%;
   width: 100%;
   box-sizing: border-box;
+  text-align: center;
   
   &:hover {
     transform: translateY(-10px);
